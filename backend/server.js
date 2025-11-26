@@ -8,3 +8,8 @@ app.get("/",(req,res)=>{
 app.listen(5000,()=>{
     console.log("Server started on port 5000");
 });
+
+app.get("/hello",(req,res)=>
+{
+    res.send("Hi this is our second route");
+})
