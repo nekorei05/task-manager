@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 
+
 app.get("/",(req,res)=>{
     res.send("Task manager backend started");
 });
@@ -13,3 +14,10 @@ app.get("/hello",(req,res)=>
 {
     res.send("Hi this is our second route");
 })
+
+app.get("/task",(req,res)=>{
+    res.json({
+        name : "Rei",
+        mood : "learning",
+    })
+});
