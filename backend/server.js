@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-
+app.use(express.json());
 
 app.get("/",(req,res)=>{
     res.send("Task manager backend started");
@@ -27,4 +27,13 @@ app.get("/intro",(req,res)=>{
     res.json({
         message : `Hello I got the name ${name}`
     });
+});
+
+app.post("/send-task",(req,res)=>
+{
+    const task = req.body.title;
+    res.json({
+        received : true,
+        title : task
+    })
 });
