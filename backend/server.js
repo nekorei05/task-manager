@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 app.use(express.json());
 
+let tasks = [];
 app.get("/",(req,res)=>{
     res.send("Task manager backend started");
 });
@@ -36,4 +37,24 @@ app.post("/send-task",(req,res)=>
         received : true,
         title : task
     })
+});
+
+// read 
+app.get("/tasks",(req,res)=>
+{
+    res.json(tasks);
+});
+
+// create 
+app.post("/tasks",(req,res)=>{
+    const new_task = {
+        id : tasks.length + 1,
+        title : req.body.title
+    }
+
+tasks.push(new_task);
+res.json({
+    message : "Task added",
+    task : new_task
+});
 });
