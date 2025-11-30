@@ -21,3 +21,10 @@ app.get("/task",(req,res)=>{
         mood : "learning",
     })
 });
+
+app.get("/intro",(req,res)=>{
+    const name = req.query.name;
+    res.json({
+        message : `Hello I got the name ${name}`
+    });
+});
