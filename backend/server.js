@@ -11,24 +11,6 @@ app.listen(5000,()=>{
     console.log("Server started on port 5000");
 });
 
-app.get("/hello",(req,res)=>
-{
-    res.send("Hi this is our second route");
-})
-
-app.get("/task",(req,res)=>{
-    res.json({
-        name : "Rei",
-        mood : "learning",
-    })
-});
-
-app.get("/intro",(req,res)=>{
-    const name = req.query.name;
-    res.json({
-        message : `Hello I got the name ${name}`
-    });
-});
 
 app.post("/send-task",(req,res)=>
 {
@@ -57,4 +39,42 @@ res.json({
     message : "Task added",
     task : new_task
 });
+});
+
+//update
+app.put("/tasks/:id",(req,res)=>{
+    const taskId = parseInt(req.params.id);
+    const newTitle = req.body.title;
+
+    const task = tasks.find(t => t.id === taskId)
+
+    if(!task){
+        return res.status(404).json({ message : "Task not found"});
+    }
+
+    task.title = newTitle;
+    res.json({
+        message : "task updated",
+        task : task 
+    });
+    
+});
+
+//delete
+app.delete("/tasks/:id",(req,res)=>{
+    const taskId = parseInt(req.params.id);
+
+    const ti = tasks.findIndex(t => t.id === taskId);
+
+    if(taskId === -1){
+        res.status(404).json({ message : "Task not found"});
+
+    }
+
+    tasks.splice(taskId,1);
+
+    res.json({ 
+        message : "Task deleted"
+    });
+
 });
