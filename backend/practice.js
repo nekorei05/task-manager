@@ -114,6 +114,41 @@ app.delete("/delete-task/:id", (req, res) => {
 });
 
 
+
+// -------------------------------------
+// ADVANCED FEATURES
+// -------------------------------------
+
+
+app.get("/tasks-with-status", (req, res) => {
+    const status = req.query.status;
+
+    const ftasks = tasks.filter(t => t.status === status);
+
+    if (ftasks.length === 0) {
+        return res.status(404).json({ message: "status not found" });
+    }
+
+    res.json(ftasks);
+});
+
+app.patch("/toggle-status/:id", (req, res) => {
+    const id = parseInt(req.params.id);
+
+    const ob = tasks.find(t => t.id === id);
+    if (!ob) {
+        return res.status(404).json({ message: "task not found" });
+    }
+
+    ob.status = (ob.status === "pending") ? "complete" : "pending";
+
+    res.json(ob);
+});
+
+app.get("/count-tasks", (req, res) => {
+    res.json({ count: tasks.length });
+});
+
 // -------------------------------------
 // START SERVER
 // -------------------------------------
