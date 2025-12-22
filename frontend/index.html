@@ -7,15 +7,42 @@
     <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-    <h1>Task Manager</h1>
-    <!-- Add task form -->
- <div class="add-task">
-        <input type="text" id="taskTitle" placeholder="Enter task title..." />
-        <button id="addBtn">Add Task</button>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <h2>🐱 Cat Tasks</h2>
+  </nav>
+
+  <!-- Welcome
+  <section class="welcome">
+    <h2>Welcome 🐾</h2>
+  </section> -->
+
+  <!-- Add Task -->
+  <section class="add-task">
+    <input type="text" id="taskInput" placeholder="What shall I do today? 🐾" />
+    <button id="addBtn">Add</button>
+  </section>
+
+  <!-- Boards -->
+  <section class="boards">
+    <div class="board" id="pending">
+      <h3>🐱 To Be Done</h3>
+      <div class="task-list"></div>
     </div>
 
-    <div id="taskList"></div>
-<script src="script.js"></script>
+    <div class="board" id="completed">
+      <h3>😴 Done & Napping</h3>
+      <div class="task-list"></div>
+    </div>
+  </section>
 
+  <!-- Delete Zone -->
+  <div class="trash" id="trash">
+    🗑️ <br>
+    <p>Drop here to delete</p>
+  </div>
+
+  <script src="script.js"></script>
 </body>
+
 </html>

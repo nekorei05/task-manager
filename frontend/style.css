@@ -1,4 +1,126 @@
+:root {
+  --bg: #fff7ed;
+  --card: #f6ebe5;
+  --task: #d6c3c3;
+  --accent: #ff8a5b;
+  --text: #3f3f46;
+  --muted: #9a8f8f;
+}
 
-body{
-    background-color: rgb(160, 241, 222);
+body {
+  background: var(--bg);
+  font-family: "Poppins", sans-serif;
+  color: var(--text);
+}
+
+.board {
+  background: var(--card);
+  width: 320px;
+  min-height: 310px;
+  border-radius: 24px;
+  padding: 1.5rem;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease;
+}
+.boards {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+
+
+.board:hover {
+  transform: translateY(-3px);
+}
+.task {
+  background: var(--task);
+  padding: 12px 14px;
+  border-radius: 14px;
+  margin-bottom: 12px;
+  cursor: grab;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.task:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+}
+
+.task:active {
+  cursor: grabbing;
+  opacity: 0.9;
+}
+.task button {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.task button:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+.add-task {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.add-task input {
+  width: 280px;
+  padding: 12px 16px;
+  border-radius: 999px;
+  border: none;
+  outline: none;
+  background: #fff;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  font-size: 0.95rem;
+}
+
+.add-task button {
+  padding: 12px 20px;
+  border-radius: 999px;
+  border: none;
+  background: var(--accent);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(255,138,91,0.4);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.add-task button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(255,138,91,0.5);
+}
+.trash {
+  margin-top: 3rem;
+  font-size: 2.4rem;
+  color: var(--muted);
+  transition: transform 0.2s ease, color 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 3rem auto 0;
+  text-align: center;
+}
+
+.trash.drag-over {
+  transform: scale(1.1);
+  color: #e11d48;
+}
+
+.trash p {
+  font-size: 0.85rem;
 }
