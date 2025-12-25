@@ -22,7 +22,9 @@ document.getElementById("addBtn").addEventListener("click", e=> {
 
     const taskDiv = document.createElement("div");
     taskDiv.className = "task";
-    taskDiv.textContent = title;
+    taskDiv.innerHTML = `
+    <span class="task-text">${title}</span>
+    <button class="edit-btn"> </button>`;
     taskDiv.draggable = true;
 
     pendingList.appendChild(taskDiv);
@@ -38,12 +40,14 @@ document.addEventListener("dragstart", e=>{
     }
 });
 
+const completed = document.getElementById("completed");
 const completedList = document.getElementById("completed-list");
-completedList.addEventListener("dragover",e=>{
+
+completed.addEventListener("dragover",e=>{
     e.preventDefault();
 });
 
-completedList.addEventListener("drop",e=>{
+completed.addEventListener("drop",e=>{
     e.preventDefault();
 
     if(draggedTask){
@@ -51,3 +55,4 @@ completedList.addEventListener("drop",e=>{
     draggedTask = null;
     }
 });
+
