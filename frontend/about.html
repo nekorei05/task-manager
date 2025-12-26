@@ -3,55 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Manager</title>
+    <title>About</title>
     <link rel="stylesheet" href="style.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet">
+<style>
+  .about-container {
+    max-width: 600px;
+    margin: 4rem auto;
+    text-align: center;
+  }
+.about-container h3 {
+  margin-bottom: 1.5rem;   
+  font-size: 2rem;        
+  font-weight: 600;      
+}
+
+.about-container p {
+  margin-bottom: 1.2rem;   
+  line-height: 1.8;      
+}
+</style>
 
 </head>
 <body>
-  <!-- Navbar -->
-
-<nav class="navbar">
+    <nav class="navbar">
   <div class="nav-left">
     <img src="paw.svg" alt="paw" class="paw-icon" />
     <span class="brand">Cat Tasks</span>
   </div>
 
   <div class="nav-links">
-    <a href="#" id="homeBtn">Home</a>
+    <a href="index.html" id="homeBtn">Home</a>
     <a href="about.html" id="aboutBtn">About</a>
   </div>
 </nav>
+<div class="about-container">
+  <h3>About This Project</h3>
+  <p>
+    Cat Tasks is a simple task manager built to demonstrate
+    backend APIs, CRUD operations, and drag-and-drop state handling.
+  </p>
 
-  <!-- Add Task -->
-  <section class="add-task">
-    <input type="text" id="taskInput" placeholder="What shall I do today? 🐾" />
-    <button id="addBtn">Add</button>
-  </section>
+  <p>
+    The frontend is intentionally minimal and built using
+    vanilla JavaScript to clearly showcase event handling
+    and API integration without abstractions.
+  </p>
+</div>
 
-  <!-- Boards -->
-  <section class="boards">
-    <div class="board" id="pending">
-      <h3> To Be Done</h3>
-      <div class="task-list" id="pending-list"></div>
-    </div>
 
-    <div class="board" id="completed">
-      <h3>Done & Napping</h3>
-      <div class="task-list" id="completed-list"></div>
-    </div>
-  </section>
-
-  <!-- Delete Zone -->
-  <div class="trash" id="trash"> <img src="trash.svg"><br>
-    <p>Drop here to <br>
-      delete</p>
-  </div>
-
-  <script src="script.js"></script>
 </body>
-
 </html>

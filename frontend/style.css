@@ -7,10 +7,65 @@
   --muted: #9a8f8f;
 }
 
+
 body {
   background: var(--bg);
-  font-family: "Poppins", sans-serif;
+  font-family: "Fredoka", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+
+  font-weight: 400;   
   color: var(--text);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 1rem 1.5rem;   /* ⬅️ slimmer */
+  background: var(--accent);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.paw-icon {
+  width: 26px;      /* good balance */
+  height: 26px;
+}
+
+.brand {
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text);
+
+  font-weight: 500;          /* ⬅️ bolder */
+  font-size: 1rem;
+
+  margin-left: 1.5rem;
+  display: inline-block;
+
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: var(--muted);
+  transform: scale(1.1);     /* subtle enlarge */
 }
 
 .board {
@@ -21,6 +76,8 @@ body {
   padding: 1.5rem;
   box-shadow: 0 20px 40px rgba(0,0,0,0.05);
   transition: transform 0.2s ease;
+  text-align: center;
+ 
 }
 .boards {
   display: flex;
@@ -29,11 +86,17 @@ body {
   gap: 2.5rem;
   margin-top: 2rem;
 }
+.board h3 {
+  font-weight: 520;    
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
 
 
 .board:hover {
   transform: translateY(-3px);
 }
+
 .task {
   background: var(--task);
   padding: 12px 14px;
@@ -105,22 +168,56 @@ body {
   box-shadow: 0 12px 24px rgba(255,138,91,0.5);
 }
 .trash {
-  margin-top: 3rem;
-  font-size: 2.4rem;
-  color: var(--muted);
-  transition: transform 0.2s ease, color 0.2s ease;
+  margin: 3rem auto 0;          /* center horizontally */
+  width: 120px;
+  height: 120px;
+
   display: flex;
+  padding :1rem;
   flex-direction: column;
   align-items: center;
-  margin: 3rem auto 0;
+  justify-content: center;
+
+  border-radius: 50%;
+  background: #f6ebe5;          /* soft card color */
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+
+  color: #9a8f8f;
   text-align: center;
+
+  transition: 
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.trash img {
+  width: 35px;        /* ⬅️ was 42px */
+  height: 35px;
+  opacity: 0.9;
+  pointer-events: none;
 }
 
 .trash.drag-over {
   transform: scale(1.1);
-  color: #e11d48;
+  color: #403033;
 }
 
 .trash p {
   font-size: 0.85rem;
 }
+
+
+.board {
+  cursor: default;
+}
+
+.task {
+  cursor: grab;
+}
+
+.task-text {
+  font-weight: 400;
+  font-size: 1rem;
+}
+

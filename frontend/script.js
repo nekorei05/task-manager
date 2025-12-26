@@ -1,14 +1,4 @@
-console.log("JS is connected")
-document.addEventListener("click", (e)=>{
-    console.log("CLicked");
-    console.log(e);
-});
 
-document.addEventListener("click", (e)=> {
-    if(e.target.id=== "addBtn")
-    console.log("You clicked on add");
-    
-});
 
 const pendingList = document.getElementById("pending-list");
 document.getElementById("addBtn").addEventListener("click", e=> {
@@ -22,9 +12,16 @@ document.getElementById("addBtn").addEventListener("click", e=> {
 
     const taskDiv = document.createElement("div");
     taskDiv.className = "task";
+   
     taskDiv.innerHTML = `
-    <span class="task-text">${title}</span>
-    <button class="edit-btn"> </button>`;
+  <span class="task-text">${title}</span>
+  <button class="edit-btn">
+    <i class="fa-duotone fa-solid fa-pen-to-square"
+       style="--fa-primary-color: #3f3f46; --fa-secondary-color: #3f3f46;">
+    </i>
+  </button>
+`;
+
     taskDiv.draggable = true;
 
     pendingList.appendChild(taskDiv);
@@ -34,10 +31,10 @@ document.getElementById("addBtn").addEventListener("click", e=> {
 let draggedTask = null;
 document.addEventListener("dragstart", e=>{
     console.log("Drag started on : ",e.target);
-
-    if(e.target.classList.contains("task")){
-        draggedTask = e.target;
-    }
+const task = e.target.closest(".task");
+if (task) {
+  draggedTask = task;
+}
 });
 
 const completed = document.getElementById("completed");
@@ -56,3 +53,32 @@ completed.addEventListener("drop",e=>{
     }
 });
 
+
+const trash = document.getElementById("trash");
+trash.addEventListener("dragover", e=> {
+    e.preventDefault();
+});
+
+trash.addEventListener("drop", e=>{
+    e.preventDefault();
+
+    if(draggedTask){
+        draggedTask.remove();
+        draggedTask = null;
+    }
+});
+
+const pending = document.getElementById("pending");
+
+pending.addEventListener("dragover", e => {
+  e.preventDefault();
+});
+
+pending.addEventListener("drop", e => {
+  e.preventDefault();
+
+  if (draggedTask) {
+    pendingList.appendChild(draggedTask);
+    draggedTask = null;
+  }
+});
