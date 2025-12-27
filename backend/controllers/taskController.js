@@ -1,8 +1,18 @@
 const Task = require("../models/taskModel");
 
 exports.createTask = async(req,res)=>{
-    const task = await Task.create(req.body);
-    res.json(task);
+    try{
+        const {title,status} = req.body;
+
+        if(!title){
+            return res.status(404).json({ message : "Title is required"});
+        }
+    
+    const task = await Task.create({ title, status});
+    res.status(201).json(task);
+} catch (err){
+    res.status(500).json({ message : "Server error"});
+}
 }
 
 exports.getTasks = async(req,res)=>{
