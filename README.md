@@ -1,8 +1,8 @@
-🗂️ Task Manager
+# 🗂️ Task Manager
 
 A minimal full-stack Task Manager built to understand real backend architecture and frontend–backend communication.
 
-🚀 Features
+# 🚀 Features
 
 Add and delete tasks
 
@@ -12,7 +12,7 @@ Automatically move tasks between Pending and Completed sections
 
 Persistent storage using MongoDB
 
-🛠️ Tech Stack
+# 🛠️ Tech Stack
 
 Frontend: HTML, CSS, Vanilla JavaScript
 
@@ -20,7 +20,7 @@ Backend: Node.js, Express.js
 
 Database: MongoDB (Mongoose)
 
-🔄 API Endpoints
+# 🔄 API Endpoints
 
 GET /tasks – Fetch all tasks
 
@@ -30,7 +30,7 @@ PUT /tasks/:id – Update task
 
 DELETE /tasks/:id – Delete task
 
-🧠 What This Project Demonstrates
+# 🧠 What This Project Demonstrates
 
 Clean REST API design
 
@@ -40,7 +40,7 @@ Proper backend structure (models, controllers, routes)
 
 Real-time UI updates via Fetch API
 
-📁 Project Structure
+# 📁 Project Structure
 backend/   → API, database logic  
 frontend/  → UI and client-side logic  
 
