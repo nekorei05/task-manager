@@ -20,8 +20,8 @@ A minimal full-stack Task Manager built to understand real backend architecture 
 - **DELETE /tasks/:id** – Delete task
   
 ## 📸 Demo
-![Task Manager Screenshot](D:/task-manager/about.png)
-![Task Manager Screenshot](D:/task-manager/home.png)
+![Task Manager Screenshot](frontend/about.png)
+![Task Manager Screenshot](frontend/home.png)
 
 
 ## **🧠 What This Project Demonstrates**
