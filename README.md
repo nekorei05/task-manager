@@ -19,9 +19,8 @@ A minimal full-stack Task Manager built to understand real backend architecture 
 - **PUT /tasks/:id** – Update task  
 - **DELETE /tasks/:id** – Delete task
   
-## 📸 Demo
-![Task Manager Screenshot](frontend/about.png)
-![Task Manager Screenshot](frontend/home.png)
+## 📸 Site preview
+https://nekorei05.github.io/task-manager/
 
 
 ## **🧠 What This Project Demonstrates**
