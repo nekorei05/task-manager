@@ -5,7 +5,7 @@ exports.createTask = async(req,res)=>{
         const {title,status} = req.body;
 
         if(!title){
-            return res.status(404).json({ message : "Title is required"});
+            return res.status(400).json({ message : "Title is required"});
         }
     
     const task = await Task.create({ title, status});
@@ -20,7 +20,7 @@ exports.getTasks = async(req,res)=>{
     res.json(tasks);
 }
 
-exports.updateTasks = async(req,res)=>{
+exports.updateTask = async(req,res)=>{
     const task = await Task.findByIdAndUpdate(
         req.params.id,
         req.body,
@@ -36,7 +36,7 @@ exports.updateTasks = async(req,res)=>{
 exports.deleteTask = async(req,res)=>{
     const task = await Task.findByIdAndDelete(req.params.id);
     if(!task){
-        res.status(404).json({ message : "Task not found"});
+        return res.status(404).json({ message : "Task not found"});
     }
     res.json({ message : "Task deleted"});
 };
