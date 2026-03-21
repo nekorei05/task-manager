@@ -30,5 +30,5 @@ https://nekorei05.github.io/task-manager/
 - Real-time UI updates via Fetch API  
 
 ## **📁 Project Structure**
-- `backend/` → API, database logic  
+- `backend/` → API, Database logic  
 - `frontend/` → UI and client-side logic  
