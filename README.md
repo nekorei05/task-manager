@@ -33,8 +33,9 @@ https://nekorei05.github.io/task-manager/
 - Frontend–backend communication using Fetch API
 
 ## **📁 Project Structure**
+```text
 task-manager/
-│
 ├── backend/        # Express server, routes, controllers
 ├── frontend/       # UI and client-side logic
-├── tasks.json      # File-based data persistence
+└── tasks.json      # File-based data persistence
+
