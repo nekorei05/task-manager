@@ -2,157 +2,76 @@ const express = require("express");
 const app = express();
 
 let tasks = [];
+let nextId = 1; 
+
 app.use(express.json());
 
-// -------------------------------------
-// BASIC ROUTES
-// -------------------------------------
-
-app.get("/", (req, res) => {
-    res.json({ msg: "hi" });
-});
-
-app.get("/hello", (req, res) => {
-    res.json({ message: "Hello rei" });
-});
-
-
-// -------------------------------------
-// PRACTICED CRUD ROUTES (simple array items)
-// -------------------------------------
-
-app.post("/add-item", (req, res) => {
-    const n = req.body.name;
-    tasks.push(n);
-    res.json({ message: "success" });
-});
-
-app.get("/items", (req, res) => {
+// Get all tasks
+app.get("/tasks", (req, res) => {
     res.json(tasks);
 });
 
-app.delete("/delete-item/:index", (req, res) => {
-    const taskId = parseInt(req.params.index);
-
-    if (taskId < 0 || taskId >= tasks.length) {
-        return res.status(404).json({ message: "Task not found" });
-    }
-
-    tasks.splice(taskId, 1);
-    res.json({ message: "task deleted" });
-});
-
-app.put("/update-item/:index", (req, res) => {
-    const id = parseInt(req.params.index);
-
-    if (id < 0 || id >= tasks.length) {
-        return res.status(404).json({ message: "Task not found" });
-    }
-
-    tasks[id] = req.body.title;
-    res.json({ message: "Title updated" });
-});
-
-
-// -------------------------------------
-// REAL TASK MANAGER ROUTES (object-based tasks)
-// -------------------------------------
-
-app.post("/add-with-status", (req, res) => {
-    const ob = {
-        id: tasks.length + 1,
-        title: req.body.title,
-        status: req.body.status
+// Add a new task (Object-based)
+app.post("/tasks", (req, res) => {
+    const newTask = {
+        id: nextId++, 
+        title: req.body.title || "Untitled Task",
+        status: req.body.status || "pending"
     };
 
-    tasks.push(ob);
-    res.json({ message: "Added task" });
+    tasks.push(newTask);
+    res.json({ message: "Task added", task: newTask });
 });
 
-app.get("/show-task", (req, res) => {
-    res.json(tasks);
-});
-
-
-
-app.get("/get-task/:id", (req, res) => {
+// Update a task (Title or Status)
+app.put("/tasks/:id", (req, res) => {
     const id = parseInt(req.params.id);
+    const task = tasks.find(t => t.id === id);
 
-    const asked_task = tasks.find(t => t.id === id);
-    if (!asked_task) {
-        return res.status(404).json({ message: "task not found" });
+    if (!task) {
+        return res.status(404).json({ message: "Task not found" });
     }
 
-    res.json(asked_task);
+    if (req.body.title) task.title = req.body.title;
+    if (req.body.status) task.status = req.body.status;
+
+    res.json({ message: "Task updated", task });
 });
 
-
-app.put("/update-task/:id", (req, res) => {
+// Toggle status (Pending - Complete)
+app.patch("/tasks/toggle/:id", (req, res) => {
     const id = parseInt(req.params.id);
+    const task = tasks.find(t => t.id === id);
 
-    const ob = tasks.find(t => t.id === id);
-    if (!ob) {
-        return res.status(404).json({ message: "task not found" });
+    if (!task) {
+        return res.status(404).json({ message: "Task not found" });
     }
 
-    ob.title = req.body.title;
-    ob.status = req.body.status;
-
-    res.json({ message: "task updated" });
+    task.status = (task.status === "pending") ? "complete" : "pending";
+    res.json(task);
 });
 
-app.delete("/delete-task/:id", (req, res) => {
+// Delete a task
+app.delete("/tasks/:id", (req, res) => {
     const id = parseInt(req.params.id);
-
     const index = tasks.findIndex(t => t.id === id);
+
     if (index === -1) {
-        return res.status(404).json({ message: "task not found" });
+        return res.status(404).json({ message: "Task not found" });
     }
 
     tasks.splice(index, 1);
-    res.json({ message: "task deleted" });
+    res.json({ message: "Task deleted" });
 });
 
-
-
-// -------------------------------------
-// ADVANCED FEATURES
-// -------------------------------------
-
-
-app.get("/tasks-with-status", (req, res) => {
+app.get("/tasks/filter", (req, res) => {
     const status = req.query.status;
-
-    const ftasks = tasks.filter(t => t.status === status);
-
-    if (ftasks.length === 0) {
-        return res.status(404).json({ message: "status not found" });
-    }
-
-    res.json(ftasks);
+    const filtered = tasks.filter(t => t.status === status);
+    res.json(filtered);
 });
 
-app.patch("/toggle-status/:id", (req, res) => {
-    const id = parseInt(req.params.id);
 
-    const ob = tasks.find(t => t.id === id);
-    if (!ob) {
-        return res.status(404).json({ message: "task not found" });
-    }
-
-    ob.status = (ob.status === "pending") ? "complete" : "pending";
-
-    res.json(ob);
-});
-
-app.get("/count-tasks", (req, res) => {
-    res.json({ count: tasks.length });
-});
-
-// -------------------------------------
-// START SERVER
-// -------------------------------------
-
-app.listen(5000, () => {
-    console.log("Server started on port 5000");
+const PORT = 5000;
+app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
 });
