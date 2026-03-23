@@ -1,6 +1,6 @@
 # **🗂️ Task Manager**
 
-A minimal full-stack Task Manager built to understand real backend architecture and frontend–backend communication.
+A minimal full-stack Task Manager built to understand backend architecture, REST APIs, and frontend–backend interaction without relying on a database.
 
 ## **🚀 Features**
 - Add and delete tasks
