@@ -24,7 +24,7 @@ A minimal full-stack Task Manager built to understand backend architecture, REST
 https://nekorei05.github.io/task-manager/
 
 
-## **🧠 What This Project Demonstrates**
+## ** What This Project Demonstrates**
 - REST API design and route handling
 - Full CRUD operations without a database
 - Understanding of HTTP methods (GET, POST, PATCH, DELETE)
@@ -32,7 +32,7 @@ https://nekorei05.github.io/task-manager/
 - Drag-and-drop UI interaction
 - Frontend–backend communication using Fetch API
 
-## **📁 Project Structure**
+## ** Project Structure**
 ```text
 task-manager/
 ├── backend/        # Express server, routes, controllers
